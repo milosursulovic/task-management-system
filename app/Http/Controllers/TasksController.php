@@ -100,7 +100,11 @@ class TasksController extends Controller
         return redirect('/dashboard');
     }
 
-    public function deleteTask()
+    public function deleteTask(Request $request)
     {
+        $task = Task::findOrFail($request->id);
+        $task->delete();
+
+        return redirect('/dashboard');
     }
 }
