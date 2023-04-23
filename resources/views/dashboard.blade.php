@@ -2,7 +2,47 @@
 
 @section('container')
     @if (Auth::user()->role == 'admin')
-
+        <div class="dashboard-container">
+            <div class="dashboard-options">
+                <form action="{{ route('users') }}"><button class="btn">{{ __('Users') }}</button></form>
+                <form action="{{ route('allTasks') }}"><button class="btn">{{ __('Tasks') }}</button></form>
+            </div>
+            @if ($users != null)
+                <div class="task-list">
+                    @foreach ($users as $user)
+                        <div class="task-list-item">
+                            <p class="task-list-item-left">{{ $user->name }}</p>
+                            <div class="task-list-item-right">
+                                <form method="post" action="{{ route('deleteUser', ['id' => $user->id]) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"><i class="fas fa-trash"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+            @if ($allTasks != null)
+                <div class="task-list">
+                    @foreach ($allTasks as $task)
+                        <div class="task-list-item">
+                            <p class="task-list-item-left">{{ $task->title }}</p>
+                            <div class="task-list-item-right">
+                                <form method="post" action="{{ route('deleteTask', ['id' => $task->id]) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"><i class="fas fa-trash"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+        </div>
+        @if ($allTasks != null)
+            {{ $allTasks->links('simple-pagination') }}
+        @endif
     @else
         <h1>{{ __('Example') }}</h1>
         <div class="dashboard-container">

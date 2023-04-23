@@ -37,6 +37,7 @@ class TasksController extends Controller
         $tasks = Task::paginate(5);
         return view('dashboard', [
             'title' => 'Dashboard',
+            'users' => null,
             'tasksByMe' => null,
             'tasksToMe' => null,
             'allTasks' => $tasks
@@ -106,7 +107,7 @@ class TasksController extends Controller
         $task = Task::findOrFail($request->id);
         $task->delete();
 
-        return redirect('/dashboard');
+        return redirect('/tasks/all');
     }
 
     public function completeTask(Request $request)

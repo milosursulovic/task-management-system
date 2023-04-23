@@ -11,12 +11,6 @@ function getAllTasksByMe()
     return $tasks;
 }
 
-function getAllTasks()
-{
-    $tasks = Task::all();
-    return $tasks;
-}
-
 function getAllUsers()
 {
     $users = CustomUser::where('role', '<>', 'admin')->get();
@@ -28,7 +22,7 @@ Route::get('/dashboard', function () {
         return view('dashboard', [
             'title' => 'Dashboard',
             'users' => getAllUsers(),
-            'tasks' => getAllTasks(),
+            'tasks' => null,
             'tasksByMe' => null,
             'tasksToMe' => null,
             'allTasks' => null
