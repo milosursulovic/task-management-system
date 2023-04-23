@@ -20,6 +20,7 @@ return new class extends Migration
             $table->dateTime('due_date');
             $table->unsignedBigInteger('assigned_to')->nullable();
             $table->unsignedBigInteger('created_by');
+            $table->boolean('completed')->default(false);
             $table->timestamps();
 
             $table->foreign('assigned_to')->references('id')->on('custom_users')->onDelete('set null');
