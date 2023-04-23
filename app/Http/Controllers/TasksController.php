@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CustomUser;
 use App\Models\Task;
+use Illuminate\Http\Request;
 
 class TasksController extends Controller
 {
@@ -39,5 +41,49 @@ class TasksController extends Controller
             'tasksToMe' => null,
             'allTasks' => $tasks
         ]);
+    }
+
+    public function addTask()
+    {
+        $users = CustomUser::where('role', '<>', 'admin')->get();
+
+        return view('addEditTask', [
+            'title' => 'Add Task',
+            'task' => null,
+            'users' => $users
+        ]);
+    }
+
+    public function saveTask(Request $request)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required',
+            'due_date' => 'required|date_format:Y-m-d\TH:i',
+            'assigned_to' => 'required|exists:custom_users,id'
+        ]);
+
+        $task = new Task;
+        $task->title = $validatedData['title'];
+        $task->description = $validatedData['description'];
+        $task->due_date = $validatedData['due_date'];
+        $task->assigned_to = $validatedData['assigned_to'];
+        $task->created_by = auth()->id();
+        $task->completed = false;
+        $task->save();
+
+        return redirect('/dashboard');
+    }
+
+    public function editTask()
+    {
+    }
+
+    public function saveEditedTask()
+    {
+    }
+
+    public function deleteTask()
+    {
     }
 }

@@ -24,7 +24,8 @@ body {
 }
 
 form#register-form,
-form#login-form {
+form#login-form,
+form#task-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -58,7 +59,8 @@ label {
     color: #333;
 }
 
-input {
+input,
+select {
     padding: 10px;
     border-radius: 5px;
     border: none;
@@ -120,10 +122,17 @@ button.btn:hover {
     justify-content: space-evenly;
 }
 
-.task-list {
+.task-list-outer {
     display: flex;
     height: 600px;
     flex-grow: 1;
+    flex-direction: column;
+}
+
+.task-list-inner {
+    display: flex;
+    margin-top: 20px;
+    height: 600px;
     flex-direction: column;
 }
 

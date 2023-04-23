@@ -20,11 +20,11 @@ class Task extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'assigned_to');
+        return $this->belongsTo(CustomUser::class, 'assigned_to');
     }
 
     public function creator()
     {
-        return $this->belongsTo(User::class, 'created_by');
+        return $this->belongsTo(CustomUser::class, 'created_by');
     }
 }
