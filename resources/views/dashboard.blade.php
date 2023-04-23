@@ -37,8 +37,8 @@
                         <div class="task-list-item">
                             <p class="task-list-item-left">{{ $task->title }}</p>
                             <div class="task-list-item-right">
-                                <form id="task-form-{{ $task->id }}" action="{{ route('complete', ['id' => $task->id]) }}"
-                                    method="post">
+                                <form id="task-form-{{ $task->id }}"
+                                    action="{{ route('complete', ['id' => $task->id]) }}" method="post">
                                     @csrf
                                     <input class="task-completed" type="checkbox" id="task-completed-{{ $task->id }}"
                                         name="task-completed-{{ $task->id }}" {{ $task->completed ? 'checked' : '' }}>
@@ -50,6 +50,19 @@
             @endif
 
             @if ($allTasks != null)
+                <div class="task-list">
+                    @foreach ($allTasks as $task)
+                        <div class="task-list-item">
+                            <p class="task-list-item-left">{{ $task->title }}</p>
+                            <div class="task-list-item-right">
+                                <p>{{ __('Assigned To:') . ' ' . $task->user->name }}</p>
+                                <input type="checkbox" id="task-completed-{{ $task->id }}"
+                                    name="task-completed-{{ $task->id }}" {{ $task->completed ? 'checked' : '' }}
+                                    disabled>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             @endif
         </div>
     @endif
