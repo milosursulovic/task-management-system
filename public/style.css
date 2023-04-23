@@ -120,14 +120,14 @@ button.btn:hover {
     justify-content: space-evenly;
 }
 
-.dashboard-list {
+.task-list {
     display: flex;
     height: 600px;
     flex-grow: 1;
     flex-direction: column;
 }
 
-.dashboard-list-item {
+.task-list-item {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -141,12 +141,12 @@ button.btn:hover {
     line-height: 1.4;
 }
 
-.dashboard-list-item-right {
+.task-list-item-right {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.dashboard-list-item-right p {
+.task-list-item-right p {
     margin-right: 20px;
 }
