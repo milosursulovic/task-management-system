@@ -122,6 +122,7 @@ button.btn:hover {
     justify-content: space-evenly;
 }
 
+.task-list,
 .task-list-outer {
     display: flex;
     height: 600px;

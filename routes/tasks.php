@@ -11,3 +11,4 @@ Route::post('/tasks/add', [TasksController::class, 'saveTask'])->name('saveTask'
 Route::get('/tasks/{id}', [TasksController::class, 'editTask'])->name('editTask');
 Route::patch('/tasks/{id}', [TasksController::class, 'saveEditedTask'])->name('saveEditedTask');
 Route::delete('/tasks/{id}', [TasksController::class, 'deleteTask'])->name('deleteTask');
+Route::post('/tasks/complete/{id}', [TasksController::class, 'completeTask'])->name('complete');

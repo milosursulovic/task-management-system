@@ -32,6 +32,21 @@
             @endif
 
             @if ($tasksToMe != null)
+                <div class="task-list">
+                    @foreach ($tasksToMe as $task)
+                        <div class="task-list-item">
+                            <p class="task-list-item-left">{{ $task->title }}</p>
+                            <div class="task-list-item-right">
+                                <form id="task-form-{{ $task->id }}" action="{{ route('complete', ['id' => $task->id]) }}"
+                                    method="post">
+                                    @csrf
+                                    <input class="task-completed" type="checkbox" id="task-completed-{{ $task->id }}"
+                                        name="task-completed-{{ $task->id }}" {{ $task->completed ? 'checked' : '' }}>
+                                </form>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             @endif
 
             @if ($allTasks != null)

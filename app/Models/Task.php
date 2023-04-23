@@ -18,6 +18,18 @@ class Task extends Model
         'completed'
     ];
 
+    public function markAsCompleted()
+    {
+        $this->completed = true;
+        $this->save();
+    }
+
+    public function markAsIncomplete()
+    {
+        $this->completed = false;
+        $this->save();
+    }
+
     public function user()
     {
         return $this->belongsTo(CustomUser::class, 'assigned_to');

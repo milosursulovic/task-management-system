@@ -50,7 +50,8 @@ class TasksController extends Controller
         return view('addEditTask', [
             'title' => 'Add Task',
             'task' => null,
-            'users' => $users
+            'users' => $users,
+            'assignedTo' => null
         ]);
     }
 
@@ -72,7 +73,7 @@ class TasksController extends Controller
         $task->completed = false;
         $task->save();
 
-        return redirect('/dashboard');
+        return redirect('/tasks/byme');
     }
 
     public function editTask(Request $request)
@@ -97,7 +98,7 @@ class TasksController extends Controller
         $task->assigned_to = $request->assigned_to;
         $task->save();
 
-        return redirect('/dashboard');
+        return redirect('/tasks/byme');
     }
 
     public function deleteTask(Request $request)
@@ -106,5 +107,16 @@ class TasksController extends Controller
         $task->delete();
 
         return redirect('/dashboard');
+    }
+
+    public function completeTask(Request $request)
+    {
+        $task = Task::findOrFail($request->id);
+        if ($task->completed) {
+            $task->markAsIncomplete();
+        } else {
+            $task->markAsCompleted();
+        }
+        return redirect('/tasks/tome');
     }
 }

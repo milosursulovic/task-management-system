@@ -22,6 +22,7 @@
     <div class="container">
         @yield('container')
     </div>
+    <script src="{{ asset('main.js') }}"></script>
 </body>
 
 </html>
