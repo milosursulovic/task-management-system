@@ -1,6 +1,6 @@
 ## Uputstvo
 
-Nakon podesavanja env fajlova i povezivanja na bazu, da bi se osposobi administratorski nalog na servisu, potrebno je prvo
+Nakon podesavanja env fajlova i povezivanja na bazu, da bi se osposobio administratorski nalog na servisu, potrebno je prvo
 uraditi migracije
 
 ```php artisan migrate```
