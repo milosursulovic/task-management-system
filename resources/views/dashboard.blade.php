@@ -21,7 +21,9 @@
                                 <p class="task-list-item-left">{{ $task->title }}</p>
                                 <div class="task-list-item-right">
                                     <p>{{ __('Assigned To:') . ' ' . $task->user->name }}</p>
-                                    <i class="fas fa-pen"></i>
+                                    <form action="{{ route('editTask', ['id' => $task->id]) }}">
+                                        <button type="submit"><i class="fas fa-pen"></i></button>
+                                    </form>
                                 </div>
                             </div>
                         @endforeach

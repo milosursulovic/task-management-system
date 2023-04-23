@@ -42,7 +42,7 @@
             <label for="assigned_to">{{ __('Assign To') }}</label>
             <select id="assigned_to" name="assigned_to" required>
                 @foreach ($users as $user)
-                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                    <option value="{{ $user->id }}" {{ $user->id == $assignedTo ? 'selected' : ''}}>{{ $user->name }}</option>
                 @endforeach
             </select>
         </div>

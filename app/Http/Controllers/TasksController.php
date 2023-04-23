@@ -75,12 +75,29 @@ class TasksController extends Controller
         return redirect('/dashboard');
     }
 
-    public function editTask()
+    public function editTask(Request $request)
     {
+        $users = CustomUser::where('role', '<>', 'admin')->get();
+        $task = Task::find($request->id);
+
+        return view('addEditTask', [
+            'title' => 'Edit Task',
+            'task' => $task,
+            'users' => $users,
+            'assignedTo' => $task->assigned_to
+        ]);
     }
 
-    public function saveEditedTask()
+    public function saveEditedTask(Request $request)
     {
+        $task = Task::findOrFail($request->id);
+        $task->title = $request->title;
+        $task->description = $request->description;
+        $task->due_date = $request->due_date;
+        $task->assigned_to = $request->assigned_to;
+        $task->save();
+
+        return redirect('/dashboard');
     }
 
     public function deleteTask()
