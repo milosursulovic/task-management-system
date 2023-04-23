@@ -28,7 +28,7 @@ class AuthenticateMiddleware
             return redirect('/dashboard');
         }
 
-        if ($request->is('dashboard') && !auth()->check()) {
+        if (($request->is('dashboard') || $request->is('tasks/*') || $request->is('users') || $request->is('users/*')) && !auth()->check()) {
             return redirect('/login');
         }
 

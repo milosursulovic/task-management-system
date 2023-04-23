@@ -14,7 +14,7 @@ Route::get('/users', function () {
         'tasksToMe' => null,
         'allTasks' => null
     ]);
-})->name('users');
+})->name('users')->middleware('custom.auth');
 
 Route::delete('/users/{id}', function (Request $request) {
     $user = CustomUser::find($request->id);
