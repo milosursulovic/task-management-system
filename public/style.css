@@ -23,7 +23,8 @@ body {
     align-items: center;
 }
 
-form#register-form {
+form#register-form,
+form#login-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -85,4 +86,10 @@ button.btn:hover {
     color: red;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+}
+
+#logout-form {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
