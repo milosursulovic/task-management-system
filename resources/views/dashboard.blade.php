@@ -2,6 +2,7 @@
 
 @section('container')
     @if (Auth::user()->role == 'admin')
+
     @else
         <h1>{{ __('Example') }}</h1>
         <div class="dashboard-container">
@@ -10,6 +11,7 @@
                 <form action="{{ route('toMe') }}"><button class="btn">{{ __('Assigned to me') }}</button></form>
                 <form action="{{ route('allTasks') }}"><button class="btn">{{ __('All Tasks') }}</button></form>
             </div>
+
             @if ($tasksByMe != null)
                 <div class="task-list-outer">
                     <form action="{{ route('addTask') }}">
@@ -65,5 +67,8 @@
                 </div>
             @endif
         </div>
+        @if ($allTasks != null)
+            {{ $allTasks->links('simple-pagination') }}
+        @endif
     @endif
 @endsection

@@ -17,6 +17,6 @@ class CustomUser extends BaseUser implements AuthenticatableContract
         'name',
         'email',
         'password',
-        'role', // admin, non_admin
+        'role', // admin, non-admin
     ];
 }
